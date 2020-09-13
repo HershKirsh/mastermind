@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    background: pink;
+}
+
+#container {
+    margin: auto;
+}
+
+#container #start {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+#container #board {
+    background-color: #11a3b6;
+    height: 90vh;
+    width: 400px;
+    margin: 5vh auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* overflow: hidden; */
+    min-width: 250px;
+    max-width: 97vw;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.616);
+}
+
+#board #secret-row {
+    position: relative;
+}
+
+#board #secret-row::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#11a3b6, #fff);
+    transform-origin: bottom;
+    transition: transform .5s;
+}
+
+#board #secret-row:hover::after {
+    transform: scaleY(0.1);
+}
+
+#board .row {
+    display: flex;
+    width: 100%;
+    height: calc(90vh / 13);
+    justify-content: space-evenly;
+    align-items: center;
+    transition: all .4s;
+}
+
+#board .row.active {
+    box-shadow: 0 0 35px #000000c4;
+    border-radius: 10px;
+    background: #ffffff47;
+}
+
+#board hr {
+    width: 90%;
+}
+
+#board .row .peg-hole {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+#board .row .peg-hole::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border-radius: 50%;
+    background: black;
+}
+
+aside {
+    width: 20vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    margin: 100px auto;
+    top: 0;
+    right: 0px;
+}
+
+aside .color-peg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.308);
+    margin: 20px auto;
+}
+
+.color-peg.white, .white::before {
+    background-image: radial-gradient(circle at 10%, rgb(206, 206, 206), white) !important;
+}
+
+.color-peg.yellow, .yellow::before {
+    background-image: radial-gradient(circle at 10%, #fff, yellow) !important;
+}
+
+.color-peg.turquoise, .turquoise::before {
+    background-image: radial-gradient(circle at 10%, #fff, turquoise) !important;
+}
+
+.color-peg.pink, .pink::before {
+    background-image: radial-gradient(circle at 10%, #fff, hotpink) !important;
+}
+
+.color-peg.purple, .purple::before {
+    background-image: radial-gradient(circle at 10%, #fff, purple) !important;
+}
+
+.color-peg.orange, .orange::before {
+    background-image: radial-gradient(circle at 10%, #fff, orange) !important;
+}
+
+.peg-hole.white::before, .peg-hole.yellow::before, .peg-hole.turquoise::before, .peg-hole.pink::before, .peg-hole.purple::before, .peg-hole.orange::before {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 !important;
+}
+
+#board .row .marking-holes .marking-hole {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 3px;
+    border-radius: 50%;
+    background: black;
+}

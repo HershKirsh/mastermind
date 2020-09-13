@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link id="fav" rel="icon" href="" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>MasterMind</title>
+</head>
+
+<body>
+    <div id="container">
+        <button id="start" onclick="gameElems.startGame(this)">Start</button>
+        <div id="board">
+            <div id="secret-row" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+            </div>
+            <div id="row-1" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-2" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-3" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-4" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-5" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-6" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-7" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-8" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-9" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-10" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-11" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+            <hr>
+            <div id="row-12" class="row">
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <span class="peg-hole"></span>
+                <div class="marking-holes">
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                    <br>
+                    <span class="marking-hole"></span>
+                    <span class="marking-hole"></span>
+                </div>
+            </div>
+        </div>
+        <aside>
+            <span id="white" class="color-peg white" draggable="true"></span>
+            <span id="yellow" class="color-peg yellow" draggable="true"></span>
+            <span id="turquoise" class="color-peg turquoise" draggable="true"></span>
+            <span id="orange" class="color-peg orange" draggable="true"></span>
+            <span id="purple" class="color-peg purple" draggable="true"></span>
+            <span id="pink" class="color-peg pink" draggable="true"></span>
+        </aside>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
