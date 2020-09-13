@@ -54,23 +54,31 @@ const dragElems = {
         dragElems.draggedColor = this.id;
     },
     endDrag: function (e, elem) {
-        gameElems.currentColler = '';
+        this.draggedColor = '';
+        this.filledHole = '';
         if (gameElems.placedPegCount === 4) {
             gameElems.markRow(gameElems.currentRow)
             gameElems.activateRow();
         }
     },
     addPeg: function (e, elem) {
-        elem.classList.add(this.draggedColor);
-        gameElems.placedPegCount++;
+        if (this.draggedColor) {
+            console.log(this.draggedColor);
+            elem.classList.contains('filled') ? elem.classList.add('changed') : gameElems.placedPegCount++;
+            this.filledHole = elem;
+            elem.classList.add(this.draggedColor, 'filled');
+            console.log('incremented to: ' + gameElems.placedPegCount);
+        }
     },
     keepPeg: function (e, elem) {
-        elem.classList.add(this.draggedColor);
+        if (this.draggedColor) elem.classList.add(this.draggedColor);
     },
     removePeg: function (e, elem) {
-        elem.classList.remove(this.draggedColor);
-        gameElems.pegPosition = null;
-        gameElems.placedPegCount--;
+        elem.classList.contains('changed') ? elem.classList.remove('changed') : gameElems.placedPegCount--;
+        if (this.draggedColor && elem === this.filledHole) {
+            elem.classList.remove(this.draggedColor, 'filled');
+            console.log('decremented to: ' + gameElems.placedPegCount);
+        }
     }
 }
 
