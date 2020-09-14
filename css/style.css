@@ -42,6 +42,10 @@ body {
     margin-bottom: 8px;
 }
 
+#secret-row .marking-holes {
+    visibility: hidden;
+}
+
 #board #secret-row::after {
     content: '';
     position: absolute;
@@ -66,9 +70,22 @@ body {
     transition: all 1s;
 }
 
+#board .row:last-child {
+    margin-bottom: 20px;
+}
+
 #board .row.active {
+    position: relative;
     box-shadow: 0 0 22px #00000061;
     background: #ffffff47;
+}
+
+#board .row.active::before {
+    content: '';
+    border: 15px solid transparent;
+    border-left: 20px solid #ffffffc4;
+    position: absolute;
+    left: -28px;
 }
 
 #board hr {
@@ -138,6 +155,15 @@ aside .color-peg {
     width: 30px !important;
     height: 30px !important;
     margin: 0 !important;
+}
+
+span.marking-hole.white-mark {
+    background-image: radial-gradient(circle at 10%, rgb(206, 206, 206), white) !important;
+    transform: scale(1.4);
+}
+span.marking-hole.red-mark {
+    background-image: radial-gradient(circle at 10%,#fff,red) !important;
+    transform: scale(1.4);
 }
 
 #board .row .marking-holes .marking-hole {

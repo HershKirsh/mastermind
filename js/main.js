@@ -15,6 +15,7 @@ const gameElems = {
     activateRow: function () {
         htmlElements.rows[this.currentRow].classList.remove('active')
         this.currentRow++;
+        this.placedPegCount = 0;
         htmlElements.rows[this.currentRow].classList.add('active')
         htmlElements.rows[this.currentRow].querySelectorAll('.peg-hole').forEach(elem => {
             elem.addEventListener('dragenter', (e) => {
@@ -39,7 +40,8 @@ const gameElems = {
     markRow: function (row) {
         htmlElements.rows[row].querySelectorAll('.peg-hole').forEach((elem, i) => {
             if (!this.s.includes(elem.classList[1])) return
-            if (this.s.indexOf(elem.classList[1] === i)) {
+            if (i === this.s.indexOf(elem.classList[1])) {
+                console.log(elem.classList[1] + ' - ' + this.s.indexOf(elem.classList[1]) + ' - ' + i);
                 htmlElements.rows[row].querySelector('.marking-hole:not(.taken)').classList.add('white-mark', 'taken')
             } else {
                 htmlElements.rows[row].querySelector('.marking-hole:not(.taken)').classList.add('red-mark', 'taken')
