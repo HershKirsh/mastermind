@@ -9,6 +9,7 @@ const gameElems = {
     colors: ['white', 'yellow', 'turquoise', 'orange', 'purple', 'pink'],
     s: [0, 0, 0, 0],
     startGame: function (btn) {
+        dragElems.activateColors();
         this.activateRow();
         this.s = this.s.map(n => this.colors[Math.floor(Math.random() * 6)])
     },
@@ -67,6 +68,19 @@ const gameElems = {
 const dragElems = {
     draggedColor: '',
     currentPeg: '',
+    activateColors: function () {
+        htmlElements.colorPegs.forEach(elem => {
+            // funArray[currentRow][currentPeg].drag = dragElems.drag
+            // elem.addEventListener('drag', (e) => {
+            //     dragElems.drag(elem)
+            // })
+            elem.addEventListener('drag', dragElems.drag)
+            elem.addEventListener('dragend', (e) => {
+                dragElems.endDrag(e, elem)
+            })
+        })
+
+    },
     drag: function () {
         dragElems.draggedColor = this.id;
     },
@@ -97,14 +111,3 @@ const dragElems = {
         }
     }
 }
-
-htmlElements.colorPegs.forEach(elem => {
-    // funArray[currentRow][currentPeg].drag = dragElems.drag
-    // elem.addEventListener('drag', (e) => {
-    //     dragElems.drag(elem)
-    // })
-    elem.addEventListener('drag', dragElems.drag)
-    elem.addEventListener('dragend', (e) => {
-        dragElems.endDrag(e, elem)
-    })
-})
