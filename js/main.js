@@ -38,21 +38,36 @@ const gameElems = {
         });
     },
     markRow: function (row) {
+        const match = { white: [], red: [] };
         htmlElements.rows[row].querySelectorAll('.peg-hole').forEach((elem, i) => {
-            if (!this.s.includes(elem.classList[1])) return
-            if (i === this.s.indexOf(elem.classList[1])) {
-                console.log(elem.classList[1] + ' - ' + this.s.indexOf(elem.classList[1]) + ' - ' + i);
-                htmlElements.rows[row].querySelector('.marking-hole:not(.taken)').classList.add('white-mark', 'taken')
-            } else {
-                htmlElements.rows[row].querySelector('.marking-hole:not(.taken)').classList.add('red-mark', 'taken')
+            const color = elem.classList[1];
+            if (!this.s.includes(color)) return
+            if ((!match.white.includes(color) && !match.red.includes(color)) || (this.s.filter(x => x === color).length > (match.white.filter(x => x === color).length + match.red.filter(x => x === color).length))) {
+                if (this.s[i] === color) {
+                    match.white.push(color);
+                } else {
+                    match.red.push(color);
+                }
+            } else if (match.red.includes(color)) {
+                if (this.s[i] === color) {
+                    match.red.splice(match.red.indexOf(color), 1);
+                    match.white.push(color);
+                }
             }
-        })
+        });
+        match.white.forEach(x => {
+            htmlElements.rows[row].querySelector('.marking-hole:not(.taken)').classList.add('white-mark', 'taken');
+        });
+        match.red.forEach(x => {
+            htmlElements.rows[row].querySelector('.marking-hole:not(.taken)').classList.add('red-mark', 'taken');
+        });
     }
 }
 
 const dragElems = {
     draggedColor: '',
-    drag: function (elem) {
+    currentPeg: '',
+    drag: function () {
         dragElems.draggedColor = this.id;
     },
     endDrag: function (e, elem) {
@@ -69,7 +84,7 @@ const dragElems = {
             elem.classList.contains('filled') ? elem.classList.add('changed') : gameElems.placedPegCount++;
             this.filledHole = elem;
             elem.classList.add(this.draggedColor, 'filled');
-            console.log('incremented to: ' + gameElems.placedPegCount);
+            this.currentPeg = elem;
         }
     },
     keepPeg: function (e, elem) {
@@ -79,7 +94,6 @@ const dragElems = {
         elem.classList.contains('changed') ? elem.classList.remove('changed') : gameElems.placedPegCount--;
         if (this.draggedColor && elem === this.filledHole) {
             elem.classList.remove(this.draggedColor, 'filled');
-            console.log('decremented to: ' + gameElems.placedPegCount);
         }
     }
 }
