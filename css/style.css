@@ -24,14 +24,13 @@ body {
 
 #container #board {
     background-color: #11a3b6;
-    height: 90vh;
+    height: min-content;
     width: 400px;
-    margin: 5vh auto;
+    margin: 20px auto;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* overflow: hidden; */
     min-width: 250px;
     max-width: 97vw;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.616);
@@ -70,9 +69,9 @@ body {
     transition: all 1s;
 }
 
-#board .row:last-child {
+/* #board .row:last-child {
     margin-bottom: 20px;
-}
+} */
 
 #board .row.active {
     position: relative;
@@ -90,14 +89,16 @@ body {
 
 #board hr {
     width: 90%;
+    margin: 0 auto;
 }
 
 #board .row .peg-hole {
     position: relative;
     display: grid;
     place-items: center;
-    width: 50px;
-    height: 50px;
+    width: 18%;
+    height: calc(90vh / 13);
+    box-sizing: border-box;
 }
 
 #board .row .peg-hole::before {
