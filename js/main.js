@@ -1,6 +1,7 @@
 const htmlElements = {
     rows: document.querySelectorAll('.row'),
-    colorPegs: document.querySelectorAll('.color-peg')
+    colorPegs: document.querySelectorAll('.color-peg'),
+    touchPeg: document.querySelector('#touch-peg')
 }
 
 const gameElems = {
@@ -74,6 +75,11 @@ const dragElems = {
             elem.addEventListener('dragend', (e) => {
                 dragElems.endDrag(e, elem)
             })
+            if ("ontouchstart" in window || window.TouchEvent) {
+                elem.addEventListener('touchstart', touchFuncs.start)
+                elem.addEventListener('touchmove', touchFuncs.move)
+                elem.addEventListener('touchend', touchFuncs.end)
+            }
         })
     },
     drag: function () {
@@ -108,5 +114,20 @@ const dragElems = {
                 gameElems.activateRow();
             }
         }
+    }
+}
+
+const touchFuncs = {
+    start: function () {
+        htmlElements.touchPeg.classList.add(this.id);
+        htmlElements.touchPeg.style.display = 'block'
     },
+    move: function (e) {
+        console.log(`translate(${e.targetTouches[0].clientY} ${e.targetTouches[0].clientX})`);
+        htmlElements.touchPeg.style.transform = `translate(${e.targetTouches[0].clientX}px, ${e.targetTouches[0].clientY}px)`;
+    },
+    end: function (e) {
+        console.log('touch ended');
+        console.log(e);
+    }
 }

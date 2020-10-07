@@ -120,7 +120,7 @@ aside {
     right: 0px;
 }
 
-aside .color-peg {
+.color-peg {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -174,4 +174,12 @@ span.marking-hole.red-mark {
     margin: 3px;
     border-radius: 50%;
     background: black;
+}
+
+#touch-peg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 0;
+    display: none;
 }
