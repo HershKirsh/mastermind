@@ -181,5 +181,6 @@ span.marking-hole.red-mark {
     left: 0;
     top: 0;
     margin: 0;
+    pointer-events: none;
     display: none;
 }

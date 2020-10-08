@@ -76,9 +76,9 @@ const dragElems = {
                 dragElems.endDrag(e, elem)
             })
             if ("ontouchstart" in window || window.TouchEvent) {
-                elem.addEventListener('touchstart', touchFuncs.start)
-                elem.addEventListener('touchmove', touchFuncs.move)
-                elem.addEventListener('touchend', touchFuncs.end)
+                elem.addEventListener('touchstart', touchFuncs.start);
+                elem.addEventListener('touchmove', touchFuncs.move);
+                elem.addEventListener('touchend', touchFuncs.end);
             }
         })
     },
@@ -98,6 +98,7 @@ const dragElems = {
     removePeg: function (elem, removing) {
         if (elem.parentElement.classList.contains('active') && ((this.draggedColor && elem === this.filledHole) || removing)) {
             elem.classList = 'peg-hole';
+            console.log('entered');
             this.filledHole = '';
             gameElems.placedPegCount--;
         }
@@ -115,19 +116,33 @@ const dragElems = {
             }
         }
     }
-}
+};
 
 const touchFuncs = {
+    previous: '',
     start: function () {
-        htmlElements.touchPeg.classList.add(this.id);
-        htmlElements.touchPeg.style.display = 'block'
+        dragElems.draggedColor = this.id;
     },
     move: function (e) {
-        console.log(`translate(${e.targetTouches[0].clientY} ${e.targetTouches[0].clientX})`);
-        htmlElements.touchPeg.style.transform = `translate(${e.targetTouches[0].clientX}px, ${e.targetTouches[0].clientY}px)`;
+        htmlElements.touchPeg.style.transform = `translate(${e.targetTouches[0].clientX - 15}px, ${e.targetTouches[0].clientY - 15}px)`;
+        const current = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+        if (touchFuncs.previous === current) {
+            dragElems.keepPeg(null, current);
+            return
+        } else if (touchFuncs.previous) {
+            dragElems.removePeg(touchFuncs.previous);
+        }
+        htmlElements.touchPeg.classList.add(this.id);
+        htmlElements.touchPeg.style.display = 'block'
+        if (current.parentElement.classList.contains('active') && current.classList.contains('peg-hole') && !current.classList.contains('filled')) {
+            dragElems.addPeg(null, current);
+            touchFuncs.previous = current;
+        }
     },
     end: function (e) {
-        console.log('touch ended');
-        console.log(e);
+        htmlElements.touchPeg.style.display = 'none';
+        htmlElements.touchPeg.classList = 'color-peg';
+        touchFuncs.previous = '';
+        dragElems.endDrag();
     }
-}
+};
