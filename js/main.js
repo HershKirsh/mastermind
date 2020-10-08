@@ -98,7 +98,6 @@ const dragElems = {
     removePeg: function (elem, removing) {
         if (elem.parentElement.classList.contains('active') && ((this.draggedColor && elem === this.filledHole) || removing)) {
             elem.classList = 'peg-hole';
-            console.log('entered');
             this.filledHole = '';
             gameElems.placedPegCount--;
         }
@@ -135,7 +134,7 @@ const touchFuncs = {
         }
         htmlElements.touchPeg.classList.add(this.id);
         htmlElements.touchPeg.style.display = 'block'
-        if (current.parentElement.classList.contains('active') && current.classList.contains('peg-hole') && !current.classList.contains('filled')) {
+        if (current.classList.contains('peg-hole') && !current.classList.contains('filled') && current.parentElement.classList.contains('active')) {
             dragElems.addPeg(null, current);
             touchFuncs.previous = current;
         }
