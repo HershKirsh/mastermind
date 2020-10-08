@@ -124,6 +124,7 @@ const touchFuncs = {
         dragElems.draggedColor = this.id;
     },
     move: function (e) {
+        e.preventDefault();
         htmlElements.touchPeg.style.transform = `translate(${e.targetTouches[0].clientX - 15}px, ${e.targetTouches[0].clientY - 15}px)`;
         const current = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
         if (touchFuncs.previous === current) {
