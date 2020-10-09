@@ -1,7 +1,10 @@
 const htmlElements = {
+    secretRow: document.querySelector('#secret-row'),
+    secretRowPegs: document.querySelectorAll('#secret-row .peg-hole'),
     rows: document.querySelectorAll('.row'),
     colorPegs: document.querySelectorAll('.color-peg'),
-    touchPeg: document.querySelector('#touch-peg')
+    touchPeg: document.querySelector('#touch-peg'),
+    pegSound: document.querySelector('#peg-sound')
 }
 
 const gameElems = {
@@ -63,6 +66,17 @@ const gameElems = {
         match.white.forEach(x => {
             htmlElements.rows[row].querySelector('.marking-hole:not(.taken)').classList.add('white-mark', 'taken');
         });
+        if (match.red.length === 4) {
+            gameElems.endGame()
+        } else {
+            gameElems.activateRow();
+        }
+    },
+    endGame: function () {
+        this.s.forEach((c, i) => {
+            htmlElements.secretRowPegs[i].classList.add(c);
+        })
+        htmlElements.secretRow.classList.add('reveal')
     }
 }
 
@@ -87,6 +101,8 @@ const dragElems = {
     },
     addPeg: function (e, elem) {
         if (this.draggedColor && !elem.classList.contains('filled')) {
+            htmlElements.pegSound.currentTime = 0;
+            htmlElements.pegSound.play();
             elem.classList.add(this.draggedColor);
             gameElems.placedPegCount++;
             this.filledHole = elem;
@@ -111,7 +127,6 @@ const dragElems = {
             this.filledHole = '';
             if (gameElems.placedPegCount === 4) {
                 gameElems.markRow(gameElems.currentRow)
-                gameElems.activateRow();
             }
         }
     }
