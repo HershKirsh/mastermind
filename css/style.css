@@ -159,11 +159,11 @@ aside {
 }
 
 span.marking-hole.white-mark {
-    background-image: radial-gradient(circle at 10% white, rgb(206, 206, 206)) !important;
+    background-image: radial-gradient(circle at 10%, white, rgb(206, 206, 206)) !important;
     transform: scale(1.4);
 }
 span.marking-hole.red-mark {
-    background-image: radial-gradient(circle at 10%,#fff,red) !important;
+    background-image: radial-gradient(circle at 10%, #fff,red) !important;
     transform: scale(1.4);
 }
 
